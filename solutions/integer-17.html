@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        JavaScript
+    </title>
+    <style>
+        body {
+            display: flex;
+            background-color: rgb(231, 228, 228);
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        input {
+            width: 300px;
+            height: 50px;
+            font-size: 30px;
+        }
+
+        label {
+            font-size: 30px;
+        }
+
+        button {
+            width: 300px;
+            height: 30px;
+            font-size: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #error-message {
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="number">
+        999 dan katta raqam kiriting va men 100 lik xonasidagi raqamni topib beraman:
+    </label>
+    <br>
+    <input type="number" name="number" id="numberHundreds">
+    <div id="error-message"></div>
+    <input onclick="numberEntered()" type="submit" value="Kiritish">
+    <h1 id="result"></h1>
+</body>
+
+<script>
+    const input = document.getElementById("numberHundreds");
+    function numberEntered(value) {
+        value = parseInt(input.value);
+        if (isNaN(value)) {
+            document.getElementById("error-message").innerHTML = "Iltimos raqam kiriting";
+            input.value = null;
+            document.getElementById("result").innerHTML = null;
+            return;
+        }
+        let valueHundreds = (Math.floor(value / 100)) % 10;
+        document.getElementById("result").innerHTML = `${value} ning yuz xonasidagi raqam: ${valueHundreds}`;
+        document.getElementById("error-message").innerHTML = null;
+        input.value = null;
+    }
+</script>
+
+
+</html>

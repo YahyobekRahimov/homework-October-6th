@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        JavaScript
+    </title>
+    <style>
+        body {
+            display: flex;
+            background-color: rgb(231, 228, 228);
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        input {
+            width: 300px;
+            height: 50px;
+            font-size: 30px;
+        }
+
+        label {
+            font-size: 30px;
+        }
+
+        button {
+            width: 300px;
+            height: 30px;
+            font-size: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #error-message {
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="number">
+        Seconds to minutes, seconds
+    </label>
+    <br>
+    <input type="number" name="number" id="secondsInput">
+    <div id="error-message"></div>
+    <input onclick="inputSubmit()" type="submit" value="Kiritish">
+    <h1 id="result"></h1>
+</body>
+
+<script>
+    const input = document.getElementById("secondsInput");
+    function inputSubmit(value) {
+        value = parseInt(input.value);
+        if (isNaN(value)) {
+            document.getElementById("error-message").innerHTML = "Please, enter the number of seconds";
+            input.value = null;
+            document.getElementById("result").innerHTML = null;
+            return;
+        }
+
+        // Manfiy sonlarni to'g'irlash uchun kod.
+        if (value < 0) {
+            document.getElementById('error-message').innerHTML = "The number you entered cannot be negative";
+            document.getElementById("result").innerHTML = null;
+            input.value = null;
+            return;
+        }
+        let timeInMinutes = Math.floor(value / 60);
+        let remainingSeconds = value % 60;
+        document.getElementById("result").innerHTML = `${value} seconds is ${timeInMinutes} minutes and ${remainingSeconds} seconds`;
+        document.getElementById("error-message").innerHTML = null;
+        input.value = null;
+    }
+</script>
+
+
+</html>
